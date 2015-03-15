@@ -2,9 +2,9 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
-* [Linkki dokumentaatiooni](https://www.github.com)
+* [Linkki sovellukseeni](http://jhupanen.users.cs.helsinki.fi/clipBase/)
+* [Linkki dokumentaatiooni](https://github.com/frozenliquidstudios/Tsoha-Bootstrap/tree/master/doc)
 
 ## Työn aihe
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+clipBase järjestelmän on tarkoitus mahdollistaa pelivideoklippien jakaminen vaivattomasti oman yhteisön sisällä. Jokainen lähetetty tiedosto sisältää tärkeimmät perustiedot kuten resoluttion, FPS, pelin nimen ja lyhyen kuvauksen. Halutessaan voi kirjoittaa myös lisää tietoja. Näitä klippejä voivat sitten editorit ladata ja käyttää videoissaan.
