@@ -1,1 +1,2 @@
--- Lisää DROP TABLE lauseet tähän tiedostoon
+DROP TABLE IF EXISTS Login CASCADE; -- Muista IF EXISTS ja CASCADE parametrit!
+DROP TABLE IF EXISTS Clip CASCADE;

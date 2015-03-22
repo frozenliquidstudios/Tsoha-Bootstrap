@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Fill in your log-in details</h1>
+  <br>
+  <!-- Kaikki lomakkeen elementit form-tagin sisään -->
+  <form>
+    <!-- Tekstikenttä käyttäjätunnukselle -->
+    <div class="form-group">
+      <label>Username:</label>
+      <input type="text" class="form-control">
+    </div>
+    
+    <!-- Salasanakenttä salasanalle -->
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+{% endblock %}

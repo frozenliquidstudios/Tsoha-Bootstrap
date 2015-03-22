@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Your Base</h1>
+
+  <p>
+    <a href="#" class="btn btn-success">Add a new clip</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Clip Title</th>
+        <th>Game</th>
+        <th>Resolution</th>
+        <th>FPS</th>
+        <th>Date Added</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- List if Clips -->
+      <tr>
+        <td>bfhl cinematic view</td>
+        <td><a href="#">Battlefield: Hardline</a></td>
+        <td>1920 x 1080</td>
+        <td>60</td>
+        <td>22.03.2015</td>
+     <!--   <td><label class="label label-danger">kesken</label></td> -->
+        <td>Cinematic scene</td>
+        <th><a class="btn btn-default btn-sm" href="#">Modify</a></th>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
