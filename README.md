@@ -7,8 +7,9 @@ Yleisiä linkkejä:
 
 Linkkejä sivun staattisiin oksiin:
 * [Login](http://jhupanen.users.cs.helsinki.fi/clipBase/login)
-* [Clip List](http://jhupanen.users.cs.helsinki.fi/clipBase/cliplist)
 * [Modify Clip](http://jhupanen.users.cs.helsinki.fi/clipBase/modifyclip)
+
+* [Clip List - Sisältää errorin enkä löytänyt siihen ratkaisua](http://jhupanen.users.cs.helsinki.fi/clipBase/clipList)
 
 ## Työn aihe
 

@@ -19,8 +19,9 @@ $routes->get('/clipList', function(){
 $routes->post('/clipList', function(){
     ClipController::store();
 });
+
 $routes->get('/clipList/newClip', function(){
-    ClipController::store(); //create()
+    ClipController::create();
 });
 
 $routes->get('/clipList/:id', function($id){

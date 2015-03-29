@@ -19,7 +19,7 @@ class Clip extends BaseModel {
 
     foreach($entries as $entry){
         
-      $cips[] = new Clip(array(
+      $clips[] = new Clip(array(
         'id' => $entry['id'],
         'title' => $entry['title'],
         'game' => $entry['game'],

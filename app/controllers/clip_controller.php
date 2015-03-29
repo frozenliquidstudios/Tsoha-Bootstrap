@@ -20,16 +20,6 @@ class ClipController extends BaseController{
     
     $clip->save();
 
-   // Redirect::to('/clipList/' . $clip->id, array('message' => 'Clip has been successfully added!'));
-  }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  // Redirect::to('/clipList/' . $clip->id, array('message' => 'Clip has been successfully added!'));
+  }  
 }
