@@ -61,6 +61,15 @@ class Clip extends BaseModel {
  // Kint::dump($entry); //Debug - Uncomment these and comment line below.
     $this->id = $entry['id'];
   }
+  
+  public function update(){
+    $query = DB::connection()->prepare('UPDATE Clip (title, game, resolution, fps, added, description) VALUES (:title, :game, :resolution, :fps, :added, :description) RETURNING id');
+    $query->execute(array('title' => $this->title, 'game' => $this->game, 'resolution' => $this->resolution, 'fps' => $this->fps, 'added' => $this->added, 'description' => $this->description));
+    $entry = $query->fetch();
+ // Kint::trace();      //Debug 
+ // Kint::dump($entry); //Debug - Uncomment these and comment line below.
+    $this->id = $entry['id'];
+  }
 
  public function destroy(){
     $query = DB::connection()->prepare('DELETE FROM Clip (title, game, resolution, fps, added, description) VALUES (:title, :game, :resolution, :fps, :added, :description) RETURNING id');
