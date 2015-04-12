@@ -40,7 +40,7 @@ class ClipController extends BaseController{
   
   public static function edit($id){
     $clip = Clip::find($id);
-    View::make('clipList/edit.html', array('attributes' => $clip));
+    View::make('clipList/clipModify.html', array('attributes' => $clip));
   }
 
   public static function update($id){
