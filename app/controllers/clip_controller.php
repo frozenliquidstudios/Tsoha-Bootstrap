@@ -70,7 +70,7 @@ class ClipController extends BaseController{
   
    public static function destroy($id){
     $clip = new Clip(array('id' => $id));
-    $clip->destroy();
+    $clip->destroy($id);
 
     Redirect::to('/clipList', array('message' => 'Clip was deleted successfully!'));
   }

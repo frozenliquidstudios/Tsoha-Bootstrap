@@ -72,8 +72,8 @@ class Clip extends BaseModel {
   }
 
  public function destroy(){
-    $query = DB::connection()->prepare('DELETE FROM Clip (title, game, resolution, fps, added, description) VALUES (:title, :game, :resolution, :fps, :added, :description) RETURNING id');
-    $query->execute(array('title' => $this->title, 'game' => $this->game, 'resolution' => $this->resolution, 'fps' => $this->fps, 'added' => $this->added, 'description' => $this->description));
+    $query = DB::connection()->prepare('DELETE FROM Clip WHERE :id = id RETURNING id');
+    $query->execute(array('id' => $this->id));
     $entry = $query->fetch();
  // Kint::trace();      //Debug 
  // Kint::dump($entry); //Debug - Uncomment these and comment line below.
