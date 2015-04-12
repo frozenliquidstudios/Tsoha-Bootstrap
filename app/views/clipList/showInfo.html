@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+{% for clip in clips %}
+
+  <h1>{{clip.title}}</h1>
+
+  <p>
+    <a href="{{base_path}}/clipList/{{clip.id}}/edit" class="btn btn-default">Modify details</a> 
+    <form method="post" action="{{base_path}}/clipList/{{clip.id}}/destroy" style="display: inline-block;">
+        <button type="submit" class="btn btn-danger">Delete Clip</button>
+    </form>
+    
+    {% if clip.used %}                        
+            <label class="label label-danger">Taken 
+          {% else %}                                
+            <label class="label label-success">Not Used
+    {% endif %}
+  </p>
+  <br>
+    <p><strong>Game:</strong> {{clip.game}}</p>
+    <p><strong>Resolution:</strong> {{clip.resolution}}</p>
+    <p><strong>FPS:</strong> {{clip.fps}}</p>
+    <p><strong>Date uploaded:</strong> {{clip.added}}</p>
+  <p><strong>Description:</strong></p>
+  <p> {{clip.description}} </p>
+  {% endfor %}
+{% endblock %}

@@ -19,10 +19,15 @@ class HelloWorldController extends BaseController{
     }
 
     public static function sandbox(){
-    $clip1 = Clip::find(1);
-    $clips = Clip::all();
-    // Kint-luokan dump-metodi tulostaa muuttujan arvon
-    Kint::dump($clips);
-    Kint::dump($clip1);
-    }
+    $clippety = new Clip(array(
+    'title' => 'hyvä title',
+    'game' => 'kunnollinen pelinimi',
+    'resolution' => '1920 x 1080',
+    'fps' => '123',
+    'description' => 'asdfasdfasdasdasdads'
+  ));
+  $errors = $clippety->errors();
+
+  Kint::dump($errors);
+}
 }

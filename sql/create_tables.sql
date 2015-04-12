@@ -6,10 +6,12 @@ CREATE TABLE Login(
 
 CREATE TABLE Clip(
   id SERIAL PRIMARY KEY,
-  clipTitle varchar(100),
+  login_id INTEGER REFERENCES Login(id),
+  title varchar(100),
   game varchar(100),
   resolution varchar(12),
-  fps integer,
-  added DATE,
+  fps varchar(3),
+  added varchar(20),
+  used boolean DEFAULT FALSE,
   description varchar(500)
 );

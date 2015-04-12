@@ -16,14 +16,20 @@
     }
 
     public function errors(){
-      // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
-      $errors = array();
-
-      foreach($this->validators as $validator){
-        // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+      $errors = array();    
+      foreach($this->validators as $validators){
+        $validate_title = 'validate_title';
+        $errors[] = $this->{$validate_title}();
+        $validate_game = 'validate_game';
+        $errors[] = $this->{$validate_game}();
+        $validate_resolution = 'validate_resolution';
+        $errors[] = $this->{$validate_resolution}();
+        $validate_fps = 'validate_fps';
+        $errors[] = $this->{$validate_fps}();
+        $validate_description = 'validate_description';
+        $errors[] = $this->{$validate_description}();
+      //  $errors = array_merge($errors, $validators); // Ei toimi
       }
-
       return $errors;
     }
-
   }
