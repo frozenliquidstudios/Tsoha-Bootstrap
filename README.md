@@ -9,7 +9,11 @@ Linkkejä sivun staattisiin oksiin:
 * [Login](http://jhupanen.users.cs.helsinki.fi/clipBase/login)
 * [Modify Clip](http://jhupanen.users.cs.helsinki.fi/clipBase/modifyclip)
 
-* [Clip List - Sisältää errorin enkä löytänyt siihen ratkaisua](http://jhupanen.users.cs.helsinki.fi/clipBase/clipList)
+* [Clip List](http://jhupanen.users.cs.helsinki.fi/clipBase/clipList)
+
+Demo username: rapea
+Demo password: pekoni
+(Login ei toimi vielä, koska en saanut authenticatea toimimaan.)
 
 ## Työn aihe
 
