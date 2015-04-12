@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
+
   <h1>Modify information</h1>
 
   <form>
     <div class="form-group">
       <label>Title</label>
-      <input type="text" class="form-control" value="bfhl cinematic view">
+      <input type="text" name="title" class="form-control" value="{{clip.title}}">
     </div>
-    <div class="form-group">
-      <label>Game</label>
-      <input type="text" class="form-control" value="Battlefield: Hardline">
+    <div class="form-group">       
+      <label>Game</label>   
+      <input type="text" name="game" class="form-control" value="{{clip.game}}">
     </div>
     <div class="form-group">
       <label>Resolution</label>
-      <input type="text" class="form-control" value="1920 x 1080">
+      <input type="text" name="resolution" class="form-control" value="{{clip.resolution}}">
     </div>
     <div class="form-group">
       <label>FPS</label>
-      <input type="text" class="form-control" value="60">
-    </div>   
+      <input type="text" name="fps" class="form-control" value="{{clip.fps}}">
+    </div> 
     <div class="form-group">
       <label>Description</label>
-      <textarea class="form-control">Cinematic scene
-      </textarea>
+      <textarea class="form-control" name="description">{{clip.description}}</textarea>
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Save Changes</button>

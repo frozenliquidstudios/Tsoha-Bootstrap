@@ -53,7 +53,7 @@ class Clip extends BaseModel {
     return null;
   }
   
- public function save(){
+ public function save(){ 
     $query = DB::connection()->prepare('INSERT INTO Clip (title, game, resolution, fps, added, description) VALUES (:title, :game, :resolution, :fps, :added, :description) RETURNING id');
     $query->execute(array('title' => $this->title, 'game' => $this->game, 'resolution' => $this->resolution, 'fps' => $this->fps, 'added' => $this->added, 'description' => $this->description));
     $entry = $query->fetch();
@@ -63,8 +63,8 @@ class Clip extends BaseModel {
   }
   
   public function update(){
-    $query = DB::connection()->prepare('UPDATE Clip (title, game, resolution, fps, added, description) VALUES (:title, :game, :resolution, :fps, :added, :description) RETURNING id');
-    $query->execute(array('title' => $this->title, 'game' => $this->game, 'resolution' => $this->resolution, 'fps' => $this->fps, 'added' => $this->added, 'description' => $this->description));
+    $query = DB::connection()->prepare('UPDATE Clip SET title = :title, game = :game, resolution = :resolution, fps = :fps, description = :description WHERE :id = id RETURNING id'); 
+    $query->execute(array('title' => $this->title, 'game' => $this->game, 'resolution' => $this->resolution, 'fps' => $this->fps, 'description' => $this->description));
     $entry = $query->fetch();
  // Kint::trace();      //Debug 
  // Kint::dump($entry); //Debug - Uncomment these and comment line below.

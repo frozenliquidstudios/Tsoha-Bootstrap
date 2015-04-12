@@ -1,6 +1,9 @@
 <?php
 
 class ClipController extends BaseController{
+    
+    
+    
     public static function index(){
         $clips = Clip::all();
         View::make('clipList/index.html', array('clips' => $clips));
@@ -45,18 +48,15 @@ class ClipController extends BaseController{
 
   public static function update($id){
     $params = $_POST;
-
     $attributes = array(
-      'id' => $id,
       'title' => $params['title'],
       'game' => $params['game'],
       'resolution' => $params['resolution'],
       'fps' => $params['fps'],
-      'added' => $params['added'],
       'description' => $params['description']
     );
 
-    $clip = new Clip($attributes);
+    $clip = Clip::find($id);
     $errors = $clip->errors();
 
     if(count($errors) > 0){
