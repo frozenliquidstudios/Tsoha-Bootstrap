@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-{% for clip in clips %}
-
   <h1>Modify information</h1>
 
     {% if errors %}
@@ -13,8 +11,9 @@
       </ul>
     </div>
   {% endif %}
-
-  <form>
+  
+    {% for clip in clips %}
+  <form method="post" action="{{base_path}}/clipList/{{clip.id}}/edit">
     <div class="form-group">
       <label>Title</label>
       <input type="text" name="title" class="form-control" value="{{clip.title}}">

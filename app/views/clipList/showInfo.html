@@ -4,7 +4,7 @@
 
   <h1>{{clip.title}}</h1>
 
-    <form method="post" action="{{base_path}}/clipList/{{clip.id}}/edit" style="display: inline-block;">
+    <form method="get" action="{{base_path}}/clipList/{{clip.id}}/edit" style="display: inline-block;">
         <button type="submit" class="btn btn-default">Modify Details</button>
     </form>
     <form method="post" action="{{base_path}}/clipList/{{clip.id}}/destroy" style="display: inline-block;">

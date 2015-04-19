@@ -48,6 +48,7 @@ class ClipController extends BaseController{
   public static function update($id){
     $params = $_POST;
     $attributes = array(
+      'id' => $id,
       'title' => $params['title'],
       'game' => $params['game'],
       'resolution' => $params['resolution'],
@@ -55,14 +56,14 @@ class ClipController extends BaseController{
       'description' => $params['description']
     );
 
-    $clip = Clip::find($id);
+    $clip = new Clip($attributes);
+    $oldclip = Clip::find($id);
     $errors = $clip->errors();
 
     if(count($errors) > 0){
-      View::make('clipList/edit.html', array('errors' => $errors, 'attributes' => $attributes));
-    }else{
+        View::make('/clipList/clipModify.html', array('errors' => $errors, 'clips' => $oldclip));
+    }else {
       $clip->update();
-
       Redirect::to('/clipList/' . $clip->id, array('message' => 'The clip has been successfully modified!'));
     }
   }
