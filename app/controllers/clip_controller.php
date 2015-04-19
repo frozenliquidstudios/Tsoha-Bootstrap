@@ -1,10 +1,9 @@
 <?php
 
 class ClipController extends BaseController{
-    
-    
-    
+      
     public static function index(){
+        self::check_logged_in();
         $clips = Clip::all();
         View::make('clipList/index.html', array('clips' => $clips));
     }
@@ -43,7 +42,7 @@ class ClipController extends BaseController{
   
   public static function edit($id){
     $clip = Clip::find($id);
-    View::make('clipList/clipModify.html', array('attributes' => $clip));
+    View::make('clipList/clipModify.html', array('clips' => $clip)); 
   }
 
   public static function update($id){

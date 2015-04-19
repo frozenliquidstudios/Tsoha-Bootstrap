@@ -120,7 +120,7 @@ public function validate_fps(){
 public function validate_description(){
     $errors = array();
     if($this->description == '' || $this->description == null || strlen($this->description) < 10){
-        $errors[] = 'Describe the clip a little better. Maybe add map name etc.)';
+        $errors[] = 'Describe the clip a little better. (Maybe add map name etc.)';
     }
     return $errors;
 }

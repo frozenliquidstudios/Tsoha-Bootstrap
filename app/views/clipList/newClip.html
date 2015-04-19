@@ -12,6 +12,12 @@
     </div>
   {% endif %}
   
+<script language="javascript">
+        function combineResolution(){
+        document.getElementsByName("resolution").value = document.getElementById("res1").value + " x " + document.getElementById("res2").value;
+        }
+</script>
+  
   <form method="post" action="{{base_path}}/clipList">
     <div class="form-group">
       <label>Title</label>
@@ -22,12 +28,20 @@
       <label>Game</label>
       <input type="text" value="" name="game" value="<?php echo htmlspecialchars($_GET['game']); ?>" class="form-control" />
     </div>
-
+<!--
     <div class="form-group">
-      <label>Resolution</label>
-      <input type="text" value="" name="resolution" value="<?php echo htmlspecialchars($_GET['resolution']); ?>" class="form-control" />
+      <label style="float:left;display:inline-block">Resolution</label> <br>
+      <input id="res1" type="text" value="" name="res1" value="<?php echo htmlspecialchars($_GET['resolution']); ?>" class="form-control" style="width: 60px;float:left;display:inline-block"/>
+      <p style="float:left">&#160;<strong>X</strong>&#160;</p>
+      <input id="res2" type="text" value="" name="res2" value="<?php echo htmlspecialchars($_GET['resolution']); ?>" class="form-control" style="width: 60px;float:left;display:inline-block"/>
     </div>
-    
+    <br>
+-->
+    <div class="form-group">
+      <label>Resolution</label> <br>
+      <input type="text" value="" name="resolution" value="<?php echo htmlspecialchars($_GET['resolution']); ?>" class="form-control"/>
+    </div>
+
     <div class="form-group">
       <label>FPS</label>
       <input type="text" value="" name="fps" value="<?php echo htmlspecialchars($_GET['fps']); ?>" class="form-control" />
@@ -44,7 +58,7 @@
     </div>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Save Changes</button>
+      <button type="submit" class="btn btn-primary" action=combineResolution()>Save Changes</button>
     </div>
   </form>
 {% endblock %}

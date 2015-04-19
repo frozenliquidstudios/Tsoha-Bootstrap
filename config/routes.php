@@ -39,6 +39,7 @@ $routes->get('/clipList/:id', function($id){
 $routes->get('/clipList/:id/edit', function($id){
   ClipController::edit($id);
 });
+
 $routes->post('/clipList/:id/edit', function($id){
   ClipController::update($id);
 });

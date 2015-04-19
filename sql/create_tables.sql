@@ -1,7 +1,7 @@
 CREATE TABLE Login(
   id SERIAL PRIMARY KEY,
-  username varchar(50) NOT NULL,
-  password varchar(50) NOT NULL
+  username varchar(32),
+  password varchar(32)
 );
 
 CREATE TABLE Clip(

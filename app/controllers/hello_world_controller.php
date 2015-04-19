@@ -20,7 +20,7 @@ class HelloWorldController extends BaseController{
 
     public static function sandbox(){
     $clippety = new Clip(array(
-    'title' => 'hyvä title',
+    'title' => 'asd',
     'game' => 'kunnollinen pelinimi',
     'resolution' => '1920 x 1080',
     'fps' => '123',

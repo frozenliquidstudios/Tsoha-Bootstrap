@@ -16,20 +16,22 @@
     }
 
     public function errors(){
-      $errors = array();    
-      foreach($this->validators as $validators){
+      $errors = array();
+    //  $validators = array();
+      
+  //    foreach($this->validators as $validatorErrors){
         $validate_title = 'validate_title';
-        $errors[] = $this->{$validate_title}();
+        $errors = array_merge($errors, $this->{$validate_title}());
         $validate_game = 'validate_game';
-        $errors[] = $this->{$validate_game}();
+        $errors = array_merge($errors, $this->{$validate_game}());
         $validate_resolution = 'validate_resolution';
-        $errors[] = $this->{$validate_resolution}();
+        $errors = array_merge($errors, $this->{$validate_resolution}());
         $validate_fps = 'validate_fps';
-        $errors[] = $this->{$validate_fps}();
+        $errors = array_merge($errors, $this->{$validate_fps}());
         $validate_description = 'validate_description';
-        $errors[] = $this->{$validate_description}();
-      //  $errors = array_merge($errors, $validators); // Ei toimi
-      }
+        $errors = array_merge($errors, $this->{$validate_description}());
+   //     $errors = array_merge($validatorErrors, $errors); // Ei toimi
+      
       return $errors;
     }
   }

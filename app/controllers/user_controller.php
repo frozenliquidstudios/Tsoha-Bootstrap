@@ -7,25 +7,17 @@ class UserController extends BaseController {
     }
   
     public static function handle_login() {
-        $params = $_POST;
-        $user = User::authenticate($params['username'], $params['password']);
-        
-        $query = DB::connection()->prepare('SELECT * FROM Login WHERE username = :username AND password = :password LIMIT 1', array('username' => $username, 'password' => $password));
-        $query->execute();
-        $entry = $query->fetch();
-        
-        if($entry) {
-         $user = $entry;
-        } else {
-            return null;
-        }
+        $params = $_POST;   
+        $user = User::authenticate($params['username'], $params['password']);        
         
         if(!$user) {
-        View::make('user/login.html', array('error' => 'Wrong username or password!', 'username' => $params['username']));
+        //    View::make('user/login.html', array('error' => 'Wrong username or password!', 'username' => $params['username']));
+            View::make('/hiekkalaatikko.html');
         } else {
-            $_SESSION['user'] = $user->id;
+            $_SESSION['user'] = $user['id'];
 
-      Redirect::to('/', array('message' => 'Welcome back ' . $user->name . ' :D'));
+ //     Redirect::to('/', array('message' => 'Welcome back ' . $user->name . ' :D'));
+        Redirect::to('/');
     }
   }
 }
