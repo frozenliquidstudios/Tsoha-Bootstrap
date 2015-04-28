@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Your clips:</h1>
+{% if message %}
+    <div class="alert alert-success">
+        {{message}}
+    </div>
+{% endif %} 
+  <p> <a href="{{base_path}}/clipList/newClip" class="btn btn-success" style="display: inline-block; float:left;">Add clip</a> </p>
+  
+  <form method="get" action="" class="form-inline">
+    <div class="form group" style="display: inline-block; float:right;">
+        <input type="text" name="search" class="form-control" placeholder="Search..." >
+        <button type="submit" class="btn btn-default">Search!</button>
+    </div>
+  </form>
+  <br><br>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Title</th>      <!-- 1. -->
+        <th>Game</th>       <!-- 2. -->
+        <th>Resolution</th> <!-- 3. -->       
+        <th>FPS</th>        <!-- 4. -->
+        <th>Uploaded on</th><!-- 5. -->
+        <th>Status</th>     <!-- 6. -->
+        <th>Description</th><!-- 7. -->
+        <th></th>           <!-- 8. -->
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for clip in clips %}
+        <tr>
+          <td><a href="{{base_path}}/clipList/{{clip.id}}">{{clip.title}}</td>     <!-- 1. -->
+          <td>{{clip.game}}</td>        <!-- 2. -->
+          <td>{{clip.resolution}}</td>  <!-- 3. -->
+          <td>{{clip.fps}}</td>         <!-- 4. -->
+          <td>{{clip.added}}</td>       <!-- 5. -->          
+          <td>                          <!-- 6. start-->
+          {% if clip.used %}                        
+            <label class="label label-danger">Taken 
+          {% else %}                                
+                <label class="label label-success">Not Used
+          {% endif %}                               
+          </td>                         <!-- 6. end-->
+          <td>{{clip.description}}</td> <!-- 7. -->
+          <td><a class="btn btn-default btn-sm" href="{{base_path}}/clipList/{{clip.id}}/edit">Modify</a></td> <!-- 8. -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

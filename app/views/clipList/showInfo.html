@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-{% for clip in clips %}
-
+    {% if message %}
+        <div class="alert alert-success">
+            {{message}}
+        </div>
+    {% endif %}
+  {% for clip in clips %}
   <h1>{{clip.title}}</h1>
-
-    <form method="get" action="{{base_path}}/clipList/{{clip.id}}/edit" style="display: inline-block;">
+    <form method="get" action="{{base_path}}/clipList/{{clip.id}}/edit" style="float:left;">
         <button type="submit" class="btn btn-default">Modify Details</button>
     </form>
-    <form method="post" action="{{base_path}}/clipList/{{clip.id}}/destroy" style="display: inline-block;">
+    <form method="post" action="{{base_path}}/clipList/{{clip.id}}/destroy" class="destroy-form" data-confirm="Are you sure you want to delete this clip? No take-backs!" 
+          style="float:left; clear:right; padding-left: 10px;">
         <button type="submit" class="btn btn-danger">Delete Clip</button>
     </form>
   <br>
@@ -17,7 +21,7 @@
             <label class="label label-success">Not Used
      {% endif %}
 -->
-    <p></p>
+    <p style="clear:both;"></p>
     <p><strong>Game:</strong> {{clip.game}}</p>
     <p><strong>Resolution:</strong> {{clip.resolution}}</p>
     <p><strong>FPS:</strong> {{clip.fps}}</p>

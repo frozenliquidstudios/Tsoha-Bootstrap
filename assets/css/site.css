@@ -8,3 +8,19 @@
   max-width: 1200px;
   margin: 0px auto;
 }
+
+.navbar li { 
+    border-right: 1px solid lightgray;
+ }
+
+.navbar li:first-child { 
+    border-left: 1px solid lightgray; 
+}
+ 
+.navbar li:last { 
+    border-right: none;
+}
+
+.navbar li:hover {
+    background-color: lightgray;
+}

@@ -2,6 +2,29 @@
 
 class UserController extends BaseController {
     
+    public static function signup() {
+        View::make('user/signup.html');
+    }
+    
+    public static function create_signup(){
+    $params = $_POST;
+    $attributes = array(
+      'username' => $params['username'],
+      'password' => $params['password']
+    );
+    
+    $account = new User($attributes);
+    $errors = $account->user_errors();
+    
+    if(count($errors) == 0) {
+        $account->handle_signup();
+        Redirect::to('/login', array('message' => 'Account created successfully!'));
+     // Kint::dump($params);   //Debug - Uncomment this and comment Redirect::to line.
+    } else {
+        View::make('user/signup.html', array('errors' => $errors, 'attributes' => $attributes));
+    }
+  }
+    
     public static function login() {
         View::make('user/login.html');
     }
@@ -11,13 +34,17 @@ class UserController extends BaseController {
         $user = User::authenticate($params['username'], $params['password']);        
         
         if(!$user) {
-        //    View::make('user/login.html', array('error' => 'Wrong username or password!', 'username' => $params['username']));
-            View::make('/hiekkalaatikko.html');
+            View::make('user/login.html', array('error' => 'Wrong username or password!', 'username' => $params['username']));
+        //    View::make('/hiekkalaatikko.html');
         } else {
-            $_SESSION['user'] = $user['id'];
+            $_SESSION['user'] = $user->id;
 
- //     Redirect::to('/', array('message' => 'Welcome back ' . $user->name . ' :D'));
-        Redirect::to('/');
+         Redirect::to('/', array('message' => 'Welcome back ' . $user->username . ' :D'));
     }
   }
+  
+    public static function logout(){
+        $_SESSION['user'] = null;
+        Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
+    }
 }

@@ -1,44 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Your clips:</h1>
 
-  <p>
-    <a href="{{base_path}}/clipList/newClip" class="btn btn-success">Add clip</a>
-  </p>
+ <h1>clipBase</h1> 
+ 
+  <p> This is a place where you can post your game clips and cinematics for others to download. </p>
+  
+  <p> It's fairly barebones in terms of functionality and interfaces, but it will be improved. </p>
 
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>Title</th>      <!-- 1. -->
-        <th>Game</th>       <!-- 2. -->
-        <th>Resolution</th> <!-- 3. -->       
-        <th>FPS</th>        <!-- 4. -->
-        <th>Uploaded on</th><!-- 5. -->
-        <th>Status</th>     <!-- 6. -->
-        <th>Description</th><!-- 7. -->
-        <th></th>           <!-- 8. -->
-      </tr>
-    </thead>
-
-    <tbody>
-      {% for clip in clips %}
-        <tr>
-          <td><a href="{{base_path}}/clipList/{{clip.id}}">{{clip.title}}</td>     <!-- 1. -->
-          <td>{{clip.game}}</td>        <!-- 2. -->
-          <td>{{clip.resolution}}</td>  <!-- 3. -->
-          <td>{{clip.fps}}</td>         <!-- 4. -->
-          <td>{{clip.added}}</td>       <!-- 5. -->          
-          <td>                          <!-- 6. start-->
-          {% if clip.used %}                        
-            <label class="label label-danger">Taken 
-          {% else %}                                
-                <label class="label label-success">Not Used
-          {% endif %}                               
-          </td>                         <!-- 6. end-->
-          <td>{{clip.description}}</td> <!-- 7. -->
-          <td><a class="btn btn-default btn-sm" href="{{base_path}}/clipList/{{clip.id}}/edit">Modify</a></td> <!-- 8. -->
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
 {% endblock %}

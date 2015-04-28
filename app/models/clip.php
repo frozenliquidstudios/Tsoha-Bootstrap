@@ -9,28 +9,52 @@ class Clip extends BaseModel {
         $this->validators = array('validate_title', 'validate_game', 'validate_resolution', 'validate_fps', 'validate_description');
     }
     
-  public static function all(){
-    $query = DB::connection()->prepare('SELECT * FROM Clip');
-    $query->execute();
-    $entries = $query->fetchAll();
-    $clips = array();
-
-    foreach($entries as $entry){
-        
-      $clips[] = new Clip(array(
-        'id' => $entry['id'],
-        'login_id' => $entry['login_id'],
-        'title' => $entry['title'],
-        'game' => $entry['game'],
-        'resolution' => $entry['resolution'],
-        'fps' => $entry['fps'],
-        'added' => $entry['added'],
-        'description' => $entry['description']
-      ));
+    public static function your($id){
+    /*        if(isset($options['search'])){
+                $query_string .= ' AND game LIKE :like';
+                $options['like'] = '%' . $options['search'] . '%';
+            }  */     
+        $query = DB::connection()->prepare('SELECT * FROM Clip WHERE login_id = :login_id');   
+        $query->execute(array('login_id' => $id));       
+        $entries = $query->fetchAll();
+        $clips = array();
+    
+            foreach($entries as $entry) {      
+                $clips[] = new Clip(array(
+                'id' => $entry['id'],
+                'login_id' => $entry['login_id'],
+                'title' => $entry['title'],
+                'game' => $entry['game'],
+                'resolution' => $entry['resolution'],
+                'fps' => $entry['fps'],
+                'added' => $entry['added'],
+                'description' => $entry['description']
+                ));
+            }
+        return $clips;
     }
-    return $clips;
-  }
   
+    public static function all(){
+        $query = DB::connection()->prepare('SELECT * FROM Clip');
+        $query->execute();
+        $entries = $query->fetchAll();
+        $clips = array();
+
+        foreach($entries as $entry){
+            $clips[] = new Clip(array(
+                'id' => $entry['id'],
+                'login_id' => $entry['login_id'],
+                'title' => $entry['title'],
+                'game' => $entry['game'],
+                'resolution' => $entry['resolution'],
+                'fps' => $entry['fps'],
+                'added' => $entry['added'],
+                'description' => $entry['description']
+                ));
+        }
+        return $clips;
+    }
+
   public static function find($id){
     $query = DB::connection()->prepare('SELECT * FROM Clip WHERE id = :id LIMIT 1');
     $query->execute(array('id' => $id));
@@ -47,7 +71,6 @@ class Clip extends BaseModel {
         'added' => $entry['added'],
         'description' => $entry['description']
       ));
-
       return $clip;
     }
     return null;
@@ -57,8 +80,6 @@ class Clip extends BaseModel {
     $query = DB::connection()->prepare('INSERT INTO Clip (title, game, resolution, fps, added, description) VALUES (:title, :game, :resolution, :fps, :added, :description) RETURNING id');
     $query->execute(array('title' => $this->title, 'game' => $this->game, 'resolution' => $this->resolution, 'fps' => $this->fps, 'added' => $this->added, 'description' => $this->description));
     $entry = $query->fetch();
- // Kint::trace();      //Debug 
- // Kint::dump($entry); //Debug - Uncomment these and comment line below.
     $this->id = $entry['id'];
   }
   
@@ -66,8 +87,6 @@ class Clip extends BaseModel {
     $query = DB::connection()->prepare('UPDATE Clip SET title = :title, game = :game, resolution = :resolution, fps = :fps, description = :description WHERE :id = id RETURNING id'); 
     $query->execute(array('id' => $this->id, 'title' => $this->title, 'game' => $this->game, 'resolution' => $this->resolution, 'fps' => $this->fps, 'description' => $this->description));
     $entry = $query->fetch();
- // Kint::trace();      //Debug 
- // Kint::dump($entry); //Debug - Uncomment these and comment line below.
     $this->id = $entry['id'];
   }
 
@@ -75,8 +94,6 @@ class Clip extends BaseModel {
     $query = DB::connection()->prepare('DELETE FROM Clip WHERE :id = id RETURNING id');
     $query->execute(array('id' => $this->id));
     $entry = $query->fetch();
- // Kint::trace();      //Debug 
- // Kint::dump($entry); //Debug - Uncomment these and comment line below.
     $this->id = $entry['id'];
   }
   

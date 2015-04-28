@@ -1,13 +1,34 @@
 <?php
 
 class ClipController extends BaseController{
-      
+    
     public static function index(){
-        self::check_logged_in();
-        $clips = Clip::all();
-        View::make('clipList/index.html', array('clips' => $clips));
+        View::make('clipList/index.html');
     }
     
+    public static function yourClips(){
+        self::check_logged_in();
+        $id = self::get_user_logged_in();
+  //      $params = $_GET;
+  //      $options = array('login_id' => $options);
+        
+  //      if(isset($params['search'])){
+  //          $options['search'] = $params['search'];
+ //           $clips = Clip::your($options);
+ //           View::make('clipList/yourClips.html', array('clips' => $clips));
+  //      } else {
+     //      $options = $user_logged_in;
+           $clips = Clip::your($id);
+            View::make('clipList/yourClips.html', array('clips' => $clips));
+   //     }
+  
+    }
+    
+    public static function allClips(){       
+        $clips = Clip::all();       
+        View::make('clipList/allClips.html', array('clips' => $clips));
+    }
+     
     public static function create(){
         View::make('clipList/newClip.html');
     }
