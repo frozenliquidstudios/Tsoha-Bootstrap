@@ -19,7 +19,6 @@ class UserController extends BaseController {
     if(count($errors) == 0) {
         $account->handle_signup();
         Redirect::to('/login', array('message' => 'Account created successfully!'));
-     // Kint::dump($params);   //Debug - Uncomment this and comment Redirect::to line.
     } else {
         View::make('user/signup.html', array('errors' => $errors, 'attributes' => $attributes));
     }
@@ -35,7 +34,6 @@ class UserController extends BaseController {
         
         if(!$user) {
             View::make('user/login.html', array('error' => 'Wrong username or password!', 'username' => $params['username']));
-        //    View::make('/hiekkalaatikko.html');
         } else {
             $_SESSION['user'] = $user->id;
 
@@ -45,6 +43,6 @@ class UserController extends BaseController {
   
     public static function logout(){
         $_SESSION['user'] = null;
-        Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
+        Redirect::to('/login', array('message' => 'You logged out. See you soon!'));
     }
 }

@@ -15,3 +15,8 @@ CREATE TABLE Clip(
   used boolean DEFAULT FALSE,
   description varchar(500)
 );
+
+CREATE TABLE Game(
+  id SERIAL PRIMARY KEY,
+  gamename varchar(100)
+);

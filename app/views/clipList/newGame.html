@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Add a new game:</h1>
+    {% if message %}
+        <div class="alert alert-success">
+            {{message}}
+        </div>
+    {% endif %}
+  
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  
+  <form method="post" action="{{base_path}}/clipList/clipsByGame">
+    <div class="form-group">
+      <label>Game name:</label>
+      <input type="text" value="" name="gamename" value="" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Submit Game</button>
+    </div>
+  </form>
+{% endblock %}

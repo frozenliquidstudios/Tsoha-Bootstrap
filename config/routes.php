@@ -44,6 +44,26 @@ $routes->get('/clipList', function(){
     ClipController::allClips();
 });
 
+$routes->get('/clipList/clipsByGame', function(){
+    GameController::allGames();
+});
+
+/*$routes->get('/clipList/clipsByGame/:gamename', function($gamename){
+    ClipController::allClipsFromGame($gamename);
+}); */
+
+$routes->post('/clipList/clipsByGame', 'check_logged_in', function(){
+    GameController::store();
+});
+
+$routes->get('/clipList/clipsByGame/newGame', 'check_logged_in', function(){
+    GameController::create();
+});
+
+$routes->post('/clipList/clipsByGame/:id/destroy', 'check_logged_in', function($id){
+    GameController::destroy($id);
+});
+
 $routes->post('/clipList', 'check_logged_in', function(){
     ClipController::store();
 });

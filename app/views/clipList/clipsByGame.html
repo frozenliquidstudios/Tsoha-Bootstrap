@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Games:</h1>
+{% if message %}
+    <div class="alert alert-success">
+        {{message}}
+    </div>
+{% endif %} 
+  <p> <a href="{{base_path}}/clipList/clipsByGame/newGame" class="btn btn-success" style="display: inline-block; float:left;">Add game</a> </p>
+  
+  <form method="get" action="" class="form-inline">
+    <div class="form group" style="display: inline-block; float:left;">
+        <input type="text" name="gamename" class="form-control" placeholder="Game..." >
+        <button type="submit" class="btn btn-default">GO!</button>
+    </div>
+  </form>
+  
+  <form method="get" action="" class="form-inline">
+    <div class="form group" style="display: inline-block; float:right;">
+        <input type="text" name="search" class="form-control" placeholder="Search..." >
+        <button type="submit" class="btn btn-default">Search!</button>
+    </div>
+  </form>
+  <br><br>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Game Name</th>      <!-- 1. -->
+<!--    <th>Resolution</th>       
+        <th>FPS</th>        
+        <th>Uploaded on</th>
+        <th>Status</th>     
+        <th>Description</th> -->
+        <th></th>           
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for game in games %}
+        <tr>
+<!--          <td><a href="{{base_path}}/clipList/{{clip.id}}">{{clip.title}}</td> 
+          <td>{{clip.resolution}}</td>  
+          <td>{{clip.fps}}</td>       
+          <td>{{clip.added}}</td>           
+          <td>                        
+          {% if clip.used %}                        
+            <label class="label label-danger">Taken 
+          {% else %}                                
+                <label class="label label-success">Not Used
+          {% endif %}                               
+          </td>                        -->
+          <td>{{game.gamename}}</td>
+          <td>  <form method="post" action="{{base_path}}/clipList/clipsByGame/{{game.id}}/destroy" class="destroy-form" data-confirm="Are you sure you want to delete this game? No take-backs!" 
+                    style="float:center;">
+                    <button type="submit" class="btn btn-danger">Delete Game</button>
+                </form></td> <!-- 8. -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

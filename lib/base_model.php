@@ -28,7 +28,7 @@
       return $errors;
     }
     
-        public function user_errors(){
+    public function user_errors(){
       $errors = array();
 
         $validate_username = 'validate_username';
@@ -37,6 +37,15 @@
         $errors = array_merge($errors, $this->{$validate_password}());
         $validate_duplicate_user = 'validate_duplicate_user';
         $errors = array_merge($errors, $this->{$validate_duplicate_user}());
+      
+      return $errors;
+    }
+    
+    public function game_errors(){
+      $errors = array();
+
+        $validate_gamename = 'validate_gamename';
+        $errors = array_merge($errors, $this->{$validate_gamename}());
       
       return $errors;
     }

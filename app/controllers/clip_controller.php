@@ -8,7 +8,6 @@ class ClipController extends BaseController{
     
     public static function yourClips(){
         self::check_logged_in();
-        $id = self::get_user_logged_in();
   //      $params = $_GET;
   //      $options = array('login_id' => $options);
         
@@ -18,7 +17,7 @@ class ClipController extends BaseController{
  //           View::make('clipList/yourClips.html', array('clips' => $clips));
   //      } else {
      //      $options = $user_logged_in;
-           $clips = Clip::your($id);
+           $clips = Clip::your(self::get_user_logged_in()->id);
             View::make('clipList/yourClips.html', array('clips' => $clips));
    //     }
   
@@ -27,6 +26,11 @@ class ClipController extends BaseController{
     public static function allClips(){       
         $clips = Clip::all();       
         View::make('clipList/allClips.html', array('clips' => $clips));
+    }
+    
+    public static function allClipsFromGame($game){       
+        $clips = Clip::allFromGame($game);       
+        View::make('clipList/clipsByGame.html', array('clips' => $clips));
     }
      
     public static function create(){
@@ -54,7 +58,7 @@ class ClipController extends BaseController{
     
     if(count($errors) == 0) {
         $clip->save();
-        Redirect::to('/clipList/' . $clip->id, array('message' => 'Clip has been successfully added!'));
+        Redirect::to('/clipList/', array('message' => 'Clip has been successfully added and Game was added to game list!'));
      // Kint::dump($params);   //Debug - Uncomment this and comment Redirect::to line.
     } else {
         View::make('clipList/newClip.html', array('errors' => $errors, 'attributes' => $attributes));

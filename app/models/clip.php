@@ -15,7 +15,7 @@ class Clip extends BaseModel {
                 $options['like'] = '%' . $options['search'] . '%';
             }  */     
         $query = DB::connection()->prepare('SELECT * FROM Clip WHERE login_id = :login_id');   
-        $query->execute(array('login_id' => $id));       
+        $query->execute(array('login_id' => $id));
         $entries = $query->fetchAll();
         $clips = array();
     
@@ -54,6 +54,29 @@ class Clip extends BaseModel {
         }
         return $clips;
     }
+    
+        public static function allFromGame($game){
+ //     $query = DB::connection()->prepare('SELECT * FROM Game WHERE gamename = :gamename');
+        $query = DB::connection()->prepare('SELECT Clip.title, Clip.resolution, Clip.fps, Clip.added, Clip.description, Game.gamename AS game
+                                            FROM Clip INNER JOIN Game ON Clip.game = Game.gamename;');
+        $query->execute(array('Game.gamename' => $game));
+        $entries = $query->fetch();
+        $clips = array();
+
+        foreach($entries as $entry){
+            $clips[] = new Clip(array(
+                'id' => $entry['id'],
+                'login_id' => $entry['login_id'],
+                'title' => $entry['title'],
+          //      'game' => $entry['game'],
+                'resolution' => $entry['resolution'],
+                'fps' => $entry['fps'],
+                'added' => $entry['added'],
+                'description' => $entry['description']
+                ));
+        }
+        return $clips;
+    }
 
   public static function find($id){
     $query = DB::connection()->prepare('SELECT * FROM Clip WHERE id = :id LIMIT 1');
@@ -81,6 +104,11 @@ class Clip extends BaseModel {
     $query->execute(array('title' => $this->title, 'game' => $this->game, 'resolution' => $this->resolution, 'fps' => $this->fps, 'added' => $this->added, 'description' => $this->description));
     $entry = $query->fetch();
     $this->id = $entry['id'];
+    
+    $query = DB::connection()->prepare('INSERT INTO Game (gamename) VALUES (:gamename) RETURNING id');
+    $query->execute(array('gamename' => $this->game));
+    $entry = $query->fetch();
+    $this->id = $entry['id'];  
   }
   
   public function update(){

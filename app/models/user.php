@@ -34,19 +34,15 @@ class User extends BaseModel {
   }
        
     public static function find($user_id) {
-    $query = DB::connection()->prepare('SELECT distinct * FROM Login WHERE id = :id LIMIT 1');
-    $query->execute(array('id' => $user_id));
-    $entry = $query->fetch();
+        $query = DB::connection()->prepare('SELECT * FROM Login WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $user_id));
+        $entry = $query->fetch();
 
-        if($entry){
-            $user = new User(array(
-                'id' => $entry['id'],
-                'username' => $entry['username'],
-                'password' => $entry['password']
-            ));
-        return $user;
-        }
-    return null;   
+            if($entry){
+                $user = new User($entry);
+                return $user;
+            }
+        return null;   
     }
   
   // VALIDATION METHODS
